@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AddUser from "./AddUser";
+import UserList from "./UserList";
 
-function App() {
+const App = () => {
+  const [data, setData] = useState([]);
+
+  const addUser = (username) => {
+    let id = Math.round(Math.random() * 9999);
+    setData([...data, { id, name: username }]);
+  };
+
+  const deleteUser = (id) => {
+    const copyData = [...data];
+    const copy = copyData.filter((v, i) => i !== id);
+    setData(copy);
+  };
+
+  const initialState = {
+    id: null,
+    name: "",
+  };
+
+  const [currentUser, setCurrentUser] = useState(initialState);
+
+  const editUser = (user) => {
+    setCurrentUser({
+      id: user.id,
+      name: user.name,
+    });
+    console.log(currentUser);
+  };
+
+  const updateUser = (id, user_update) => {
+    setData(data.map((user) => (user.id === id ? user_update : user)));
+  };
+
+  console.log(data);
+  console.log(setData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="user-box">
+        <AddUser addUser={addUser} />
+      </div>
+
+      <div className="card-hold">
+        <UserList
+          updateUser={updateUser}
+          userList={data}
+          editUser={editUser}
+          deleteUser={deleteUser}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
