@@ -20,15 +20,15 @@ const EditUser = (props) => {
         props.setEditable(false);
       }}
     >
-      <div className="card">
-        <input
-          type="text"
-          name="name"
-          value={user.name}
-          onChange={handleInputChange}
-          autoFocus
-        />
-      </div>
+      {/* <div className="card"> */}
+      <input
+        type="text"
+        name="name"
+        value={user.name}
+        onChange={handleInputChange}
+        autoFocus
+      />
+      {/* </div> */}
     </form>
   );
 };

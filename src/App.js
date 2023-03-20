@@ -1,19 +1,33 @@
-import React, { useState } from "react";
-import AddUser from "./AddUser";
-import UserList from "./UserList";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import AddUser from "./Components/AddUser";
+import UserList from "./Components/UserList";
 
 const App = () => {
   const [data, setData] = useState([]);
 
+  useEffect(() => {
+    axios.get("http://localhost:3001/users").then((res) => setData(res.data));
+  }, []);
+
   const addUser = (username) => {
-    let id = Math.round(Math.random() * 9999);
-    setData([...data, { id, name: username }]);
+    axios
+      .post("http://localhost:3001/users", { name: username })
+      .then((res) => setData([...data, res.data]));
+    // let id = Math.round(Math.random() * 9999);
+    // setData([...data, { id, name: username }]);
   };
 
   const deleteUser = (id) => {
-    const copyData = [...data];
-    const copy = copyData.filter((v, i) => i !== id);
-    setData(copy);
+    axios.delete(`http://localhost:3001/users/${id}`).then((res) => {
+      console.log(res.data);
+      const copyData = [...data];
+      const copy = copyData.filter((item) => item.id !== id);
+      setData(copy);
+    });
+    // const copyData = [...data];
+    // const copy = copyData.filter((v, i) => i !== id);
+    // setData(copy);
   };
 
   const initialState = {
@@ -32,7 +46,11 @@ const App = () => {
   };
 
   const updateUser = (id, user_update) => {
-    setData(data.map((user) => (user.id === id ? user_update : user)));
+    axios.put(`http://localhost:3001/users/${id}`, user_update).then((res) => {
+      console.log(res.data);
+      setData(data.map((user) => (user.id === id ? user_update : user)));
+    });
+    // setData(data.map((user) => (user.id === id ? user_update : user)));
   };
 
   console.log(data);

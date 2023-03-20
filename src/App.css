@@ -6,7 +6,7 @@ body{
   align-items: center;
   background: linear-gradient(to right,#00132e,#022f69);  
   justify-content: center;    
-  height: 100vh; 
+  height: auto; 
 }
 .container{
 font-size: 20px;
@@ -35,9 +35,11 @@ input{
   border: 0;
   color: aqua;
   font-size: 14px;
-  padding: 10px;
+  padding: 20px;
+  padding-bottom: 10px;
   letter-spacing: 2px;
   outline: 0;
+
   caret-color: rgba(0, 212, 255, 0.9);
   border-bottom: 2px solid #6d83a0;
 }
@@ -64,11 +66,11 @@ input{
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(17, 25, 40, 0.25);  
-  padding: 38px;  
-  filter: drop-shadow(0 30px 10px rgba(0,0,0,0.125));
+  /* backdrop-filter: blur(16px) saturate(180%); */
+  /* -webkit-backdrop-filter: blur(16px) saturate(180%); */
+  background-color: transparent;  
+  /* padding: 38px;   */
+  /* filter: drop-shadow(0 30px 10px rgba(0,0,0,0.125)); */
 }
 
 p {

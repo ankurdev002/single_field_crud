@@ -31,7 +31,7 @@ const UserShow = (props) => {
         </button>
         <button
           className="btn fill"
-          onClick={() => props.deleteUser(props.index)}
+          onClick={() => props.deleteUser(props.users.id)}
         >
           <FontAwesomeIcon className="icons" icon={faTrash} />
           Delete

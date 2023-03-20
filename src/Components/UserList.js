@@ -6,7 +6,7 @@ const UserList = (props) => {
       <div className="card">
         <UserShow
           users={users}
-          index={index}
+          // index={index}
           updateUser={props.updateUser}
           deleteUser={props.deleteUser}
           editUser={props.editUser}
