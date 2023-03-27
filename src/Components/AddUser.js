@@ -1,8 +1,12 @@
 import { faPaperPlane, faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { DataContext } from "../App";
 
-const AddUser = (props) => {
+const AddUser = () => {
+  const addUserData = useContext(DataContext);
+  // context use....
+
   const [name, setName] = useState("");
 
   const handleInput = (event) => {
@@ -12,7 +16,7 @@ const AddUser = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!name) return;
-    props.addUser(name);
+    addUserData.change(name);
     setName("");
   };
   return (

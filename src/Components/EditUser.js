@@ -1,22 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { DataContext } from "../App";
+import TempContext from "../Context/TempContext";
+import { UserListContext } from "./UserList";
 
 const EditUser = (props) => {
-  const [user, setUser] = useState(props.users);
+  const EditUserData = useContext(DataContext);
+  const usersData = useContext(UserListContext);
+  // context use....
+
+  const [user, setUser] = useState(usersData);
 
   useEffect(() => {
-    setUser(props.users);
-  }, [props]);
+    setUser(usersData);
+  }, [usersData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
 
+  const dataV = useContext(TempContext);
+  console.log(dataV);
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        props.updateUser(user.id, user);
+        EditUserData.changeUpdate(user.id, user);
         props.setEditable(false);
       }}
     >

@@ -1,17 +1,22 @@
+import { createContext, useContext } from "react";
+import { DataContext } from "../App";
 import UserShow from "./UserShow";
 
-const UserList = (props) => {
-  return props.userList.map((users, index) => {
+export const UserListContext = createContext();
+// UserList Comp.. Context....
+
+const UserList = () => {
+  const data = useContext(DataContext);
+  // context use....
+
+  return data.data.map((users, index) => {
     return (
-      <div className="card">
-        <UserShow
-          users={users}
-          // index={index}
-          updateUser={props.updateUser}
-          deleteUser={props.deleteUser}
-          editUser={props.editUser}
-        />
-      </div>
+      <UserListContext.Provider value={users}>
+        <div className="card">
+          <UserShow />
+          {/*UserShow Component*/}
+        </div>
+      </UserListContext.Provider>
     );
   });
 };
